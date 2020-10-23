@@ -1,0 +1,53 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="stylesheet" href="./src/css/form.css">
+</head>
+<body>
+    
+    <main id="container">
+        <p id="warning">* Página para testes, não inclua suas informações verdadeiras!</p>
+        <form action="validate()">
+
+            <div class="input-block">
+                <label for="name">Nome</label>
+				<input id="name" name="name" required>
+            </div>
+
+            <div class="input-block">
+                <label for="cpf">CPF</label>
+				<input id="cpf" name="cpf" required>
+            </div>
+
+            <div class="input-block invalid">
+                <label for="phone">Telefone</label>
+				<input id="phone" name="phone" required>
+            </div>
+
+            <div class="input-block">
+                <label for="email">Email</label>
+				<input id="email" name="email" required>
+            </div>
+
+            <div class="input-block">
+                <label for="password">Crie sua senha</label>
+				<input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="input-block">
+                <label for="password">Confirmar sua senha</label>
+				<input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+
+            <button type="submit">Confirmar</button>
+
+        </form>
+    </main>
+
+    <script src="./src/index.js"></script>
+</body>
+</html>
