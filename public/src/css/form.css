@@ -30,12 +30,20 @@ form {
     font-size: .9rem;
 }
 
-.input-block.invalid label{
+.input-block.invalid label {
     color: #e62012;
 }
 
-.input-block.invalid input{
+.input-block.invalid input {
     border-color: #e62012;
+}
+
+.input-block.valid label {
+    color: #2dbd53;
+}
+
+.input-block.valid input {
+    border-color: #2dbd53;
 }
 
 

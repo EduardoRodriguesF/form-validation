@@ -11,43 +11,42 @@
     
     <main id="container">
         <p id="warning">* Página para testes, não inclua suas informações verdadeiras!</p>
-        <form action="validate()">
+        <form onsubmit="validate()">
 
-            <div class="input-block">
+            <div class="input-block" id="name">
                 <label for="name">Nome</label>
-				<input id="name" name="name" required>
+				<input name="name" required>
             </div>
 
-            <div class="input-block">
+            <div class="input-block" id="cpf">
                 <label for="cpf">CPF</label>
-				<input id="cpf" name="cpf" required>
+				<input name="cpf" required>
             </div>
 
-            <div class="input-block invalid">
+            <div class="input-block" id="phone">
                 <label for="phone">Telefone</label>
-				<input id="phone" name="phone" required>
+				<input name="phone" required>
             </div>
 
-            <div class="input-block">
+            <div class="input-block" id="email">
                 <label for="email">Email</label>
-				<input id="email" name="email" required>
+				<input name="email" required>
             </div>
 
-            <div class="input-block">
+            <div class="input-block" id="password">
                 <label for="password">Crie sua senha</label>
-				<input type="password" id="password" name="password" required>
+				<input type="password" name="password" required>
             </div>
 
-            <div class="input-block">
+            <div class="input-block" id="confirm-password">
                 <label for="password">Confirmar sua senha</label>
-				<input type="password" id="confirm-password" name="confirm-password" required>
+				<input type="password" name="confirm-password" required>
             </div>
 
             <button type="submit">Confirmar</button>
 
         </form>
     </main>
-
-    <script src="./src/index.js"></script>
 </body>
+<script src="./src/index.js"></script>
 </html>
