@@ -21,14 +21,16 @@ document.querySelector('#phone input').addEventListener('input', function(e) {
     e.target.value = phoneAdjust
 });
 
+////////////////////////////////// VERIFIERS //////////////////////////////////
+
 // Email verifier
 function verifyEmail() {
     const email = document.querySelector('#email input').value;
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-        document.querySelector('#email').className += ' valid';
+        setStatus('email', true);
         return true;
     }
-    document.querySelector('#email').className += ' invalid';
+    setStatus('email', false);
     return false
 }
 
@@ -37,15 +39,21 @@ function verifyPassword() {
     const password = document.querySelector('#password input').value;
     const confPassword = document.querySelector('#confirm-password input').value;
 
+    if (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) === false) {
+        setStatus('password', false)
+        setMessage('password', 'senha fraca');
+        return false;
+    }
+
     if (password === confPassword) {
-        document.querySelector('#password').className += ' valid';
-        document.querySelector('#confirm-password').className += ' valid';
+        setStatus('password', true)
+        setStatus('password-confirm', true)
         return true;
     }
 
-    document.querySelector('#password .message').innerHTML = '* senha inválida'
-    document.querySelector('#password').className += ' invalid';
-    document.querySelector('#confirm-password').className += ' invalid';
+    setMessage('password', 'senha inválida')
+    setStatus('password', false)
+    setStatus('password-confirm', false)
     return false;
 }
 
@@ -58,9 +66,26 @@ function validate(e) {
     for (i in verifiers) {
         if (!verifiers[i]) {
             e.preventDefault();
-            return
+            return;
         }
     }
+}
+
+// Setters
+function setStatus(field, stat) {
+    const element = document.querySelector(`#${field}`);
+    if (stat) {
+        element.className += ' valid'
+        element.classList.remove('invalid');
+    }
+    else {
+        element.className += ' invalid'
+        element.classList.remove('valid');
+    }
+}
+
+function setMessage(field, message) {
+    document.querySelector(`#${field} .message`).innerHTML = '* '+message;
 }
 
 if (document.addEventListener) {
