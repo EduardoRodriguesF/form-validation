@@ -30,10 +30,24 @@ form {
     font-size: .9rem;
 }
 
+.input-block .input-header {
+    display: flex;
+    align-items: center;
+}
+.input-block .input-header p.message {
+    opacity: 0;
+    margin-left: .5rem;
+}
+.input-block.invalid .input-header p.message {
+    opacity: 1;
+    color: #e62012;
+    font-size: .7rem;
+    font-style: italic;
+}
+
 .input-block.invalid label {
     color: #e62012;
 }
-
 .input-block.invalid input {
     border-color: #e62012;
 }
@@ -41,7 +55,6 @@ form {
 .input-block.valid label {
     color: #2dbd53;
 }
-
 .input-block.valid input {
     border-color: #2dbd53;
 }

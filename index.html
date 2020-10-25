@@ -11,35 +11,59 @@
     
     <main id="container">
         <p id="warning">* Página para testes, não inclua suas informações verdadeiras!</p>
-        <form onsubmit="validate()">
+        <form onsubmit="validate(event)">
 
             <div class="input-block" id="name">
-                <label for="name">Nome</label>
+                <div class="input-header">
+                    <label for="name">Nome</label>
+                    <p class="message">* nome inválido</p>
+                </div>
+                
 				<input name="name" required>
             </div>
 
             <div class="input-block" id="cpf">
-                <label for="cpf">CPF</label>
+                <div class="input-header">
+                    <label for="cpf">CPF</label>
+                    <p class="message">* CPF inválido</p>
+                </div>
+                
 				<input name="cpf" maxlength="14" required>
             </div>
 
             <div class="input-block" id="phone">
-                <label for="phone">Telefone</label>
+                <div class="input-header">
+                    <label for="phone">Telefone</label>
+                    <p class="message">* número inválido</p>
+                </div>
+                
 				<input name="phone" maxlength="15" required>
             </div>
 
             <div class="input-block" id="email">
-                <label for="email">Email</label>
+                <div class="input-header">
+                    <label for="email">Email</label>
+                    <p class="message">* email inválido</p>
+                </div>
+                
 				<input name="email" required>
             </div>
 
             <div class="input-block" id="password">
-                <label for="password">Crie sua senha</label>
+                <div class="input-header">
+                    <label for="password">Crie sua senha</label>
+                    <p class="message"></p>
+                </div>
+                
 				<input type="password" name="password" required>
             </div>
 
             <div class="input-block" id="confirm-password">
-                <label for="password">Confirmar sua senha</label>
+                <div class="input-header">
+                    <label for="password">Confirmar sua senha</label>
+                    <p class="message"></p>
+                </div>
+                
 				<input type="password" name="confirm-password" required>
             </div>
 
