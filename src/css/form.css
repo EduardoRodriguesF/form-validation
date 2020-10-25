@@ -44,6 +44,12 @@ form {
     font-size: .7rem;
     font-style: italic;
 }
+.input-block.valid .input-header p.message {
+    opacity: 0;
+    color: #e62012;
+    font-size: .7rem;
+    font-style: italic;
+}
 
 .input-block.invalid label {
     color: #e62012;

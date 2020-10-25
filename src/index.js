@@ -1,4 +1,4 @@
-// Phone mask
+// CPF mask
 document.querySelector('#cpf input').addEventListener('input', function(e) {
     const num = e.target.value;
     const cpfAdjust = num.replace(/(\d{3})\.*(\d{3})\.*(\d{3})-*(\d{2})/, 
@@ -21,6 +21,17 @@ document.querySelector('#phone input').addEventListener('input', function(e) {
     e.target.value = phoneAdjust
 });
 
+// Email verifier
+function verifyEmail() {
+    const email = document.querySelector('#email input').value;
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+        document.querySelector('#email').className += ' valid';
+        return true;
+    }
+    document.querySelector('#email').className += ' invalid';
+    return false
+}
+
 // Password verifier
 function verifyPassword() {
     const password = document.querySelector('#password input').value;
@@ -30,18 +41,25 @@ function verifyPassword() {
         document.querySelector('#password').className += ' valid';
         document.querySelector('#confirm-password').className += ' valid';
         return true;
-    } else {
-        document.querySelector('#password .message').innerHTML = '* senha inválida'
-        document.querySelector('#password').className += ' invalid';
-        document.querySelector('#confirm-password').className += ' invalid';
-        return false;
     }
+
+    document.querySelector('#password .message').innerHTML = '* senha inválida'
+    document.querySelector('#password').className += ' invalid';
+    document.querySelector('#confirm-password').className += ' invalid';
+    return false;
 }
 
 // Validation
 function validate(e) {
-    if (!verifyPassword()) {
-        e.preventDefault();
+    const verifiers = {
+        email: verifyEmail(),
+        password: verifyPassword(),
+    }
+    for (i in verifiers) {
+        if (!verifiers[i]) {
+            e.preventDefault();
+            return
+        }
     }
 }
 
