@@ -13,7 +13,7 @@ document.querySelector('#cpf input').addEventListener('input', function(e) {
 // Phone mask
 document.querySelector('#phone input').addEventListener('input', function(e) {
     const num = e.target.value;
-    const phoneAdjust = num.replace(/\(*(\d{2})\)*(\d{4,5})-*(\d{4})/, 
+    const phoneAdjust = num.replace(/\(*(\d{2})\)*(\d{5})-*(\d{4})/, 
         function(regex, DDD, num1, num2) {
             return `(${DDD}) ${num1}-${num2}`;
         });
@@ -23,15 +23,43 @@ document.querySelector('#phone input').addEventListener('input', function(e) {
 
 ////////////////////////////////// VERIFIERS //////////////////////////////////
 
+// CPF verifier
+function verifyCPF() {
+    const cpf = document.querySelector('#cpf input').value;
+    if (/(\d{3})\.(\d{3})\.(\d{3})-(\d{2})/.test(cpf)) {
+        return setStatus('cpf', true)
+    }
+    return setStatus('cpf', false);
+}
+
+// Phone verifier
+function verifyPhone() {
+    let phone = document.querySelector('#phone input').value;
+    if (/\((\d{2})\)\s(\d{5})-(\d{4})/.test(phone)) {
+        return setStatus('phone', true);
+    } else {
+        phone = phone.replace(/\(*(\d{2})\)*(\d{4,5})-*(\d{4})/, 
+            function(regex, DDD, num1, num2) {
+                return `(${DDD}) ${num1}-${num2}`;
+            });;
+        
+        document.querySelector('#phone input').value= phone;
+
+        if (/\((\d{2})\)\s(\d{4,5})-(\d{4})/.test(phone)) {
+            return setStatus('phone', true);
+        }
+        return setStatus('phone', false);
+    }
+}
+
+
 // Email verifier
 function verifyEmail() {
     const email = document.querySelector('#email input').value;
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-        setStatus('email', true);
-        return true;
+        return setStatus('email', true);
     }
-    setStatus('email', false);
-    return false
+    return setStatus('email', false);
 }
 
 // Password verifier
@@ -40,29 +68,30 @@ function verifyPassword() {
     const confPassword = document.querySelector('#confirm-password input').value;
 
     if (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) === false) {
-        setStatus('password', false)
         setMessage('password', 'senha fraca');
-        return false;
+        return setStatus('password', false)
     }
 
     if (password === confPassword) {
         setStatus('password', true)
-        setStatus('password-confirm', true)
-        return true;
+        return setStatus('password-confirm', true)
     }
 
     setMessage('password', 'senha inválida')
     setStatus('password', false)
-    setStatus('password-confirm', false)
-    return false;
+    return setStatus('password-confirm', false)
 }
 
 // Validation
 function validate(e) {
     const verifiers = {
+        cpf: verifyCPF(),
+        phone: verifyPhone(),
         email: verifyEmail(),
         password: verifyPassword(),
     }
+    console.log(verifiers)
+    e.preventDefault();
     for (i in verifiers) {
         if (!verifiers[i]) {
             e.preventDefault();
@@ -82,6 +111,7 @@ function setStatus(field, stat) {
         element.className += ' invalid'
         element.classList.remove('valid');
     }
+    return stat;
 }
 
 function setMessage(field, message) {
