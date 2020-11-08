@@ -33,4 +33,4 @@ There is no server running, so in order to use it you just need to open `index.h
 Or, you can quickly open it on [Codepen](https://codepen.io/eduaaado/pen/YzWZGjb).
 
 ## 📜 License
-This project is under [MIT License](https://github.com/EduardoRodriguesF/form-validation/blob/main/LICENSE).
+This project is under the [MIT License](https://github.com/EduardoRodriguesF/form-validation/blob/main/LICENSE).
